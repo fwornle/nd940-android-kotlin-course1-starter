@@ -17,10 +17,14 @@ class LoginFragment : Fragment() {
         val binding: FragmentLoginBinding = DataBindingUtil.inflate<FragmentLoginBinding>(
             inflater, R.layout.fragment_login, container, false)
 
-        // hook up login button to navController
-        binding.loginButton.setOnClickListener { view: View ->
+        // hook up login and sign-up button to navController
+        binding.btLogin.setOnClickListener { view: View ->
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_welcomeFragment)
         }
+        binding.btSignup.setOnClickListener { view: View ->
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_welcomeFragment)
+        }
+
 
         // return View object
         return binding.root

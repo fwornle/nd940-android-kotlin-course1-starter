@@ -10,37 +10,128 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/loginButton"
+        <ImageView
+            android:id="@+id/ivShoe"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/image_header_height"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/vertical_margin_image"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:contentDescription="@string/it_s_a_shoe"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/shoe" />
+
+        <!-- invisible TV for alignment of label and edit text field -->
+        <TextView
+            android:id="@+id/tvAnchorEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_image"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor"
+            android:text="x"
+            android:textSize="50sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/ivShoe"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginEnd="@dimen/horizontal_margin"
+            android:text="@string/email"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
+            app:layout_constraintEnd_toStartOf="@+id/tvAnchorEmail"
+            />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:autofillHints="Enter email address"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
+            app:layout_constraintStart_toEndOf="@+id/tvAnchorEmail"
+            tools:labelFor="@id/etEmail"
+            />
+
+        <!-- invisible TV for alignment of label and edit text field -->
+        <TextView
+            android:id="@+id/tvAnchorPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor"
+            android:text="x"
+            android:textSize="50sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tvAnchorEmail"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:text="@string/password"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
+            app:layout_constraintEnd_toStartOf="@+id/tvAnchorPassword"
+            />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="Enter password"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
+            app:layout_constraintStart_toEndOf="@+id/tvAnchorPassword"
+            tools:labelFor="@id/etPassword" />
+
+        <Button
+            android:id="@+id/btLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
             android:text="@string/login"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnchorPassword"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleImage" />
+            app:layout_constraintEnd_toStartOf="@+id/btSignup"
+            />
 
-        <ImageView
-            android:id="@+id/titleImage"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/image_header_height"
+        <Button
+            android:id="@+id/btSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin"
-            android:layout_marginEnd="@dimen/horizontal_margin"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/loginButton"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:text="@string/sign_up"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnchorPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btLogin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/shoe"
-            android:contentDescription="@string/it_s_a_shoe" />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

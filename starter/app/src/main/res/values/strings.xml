@@ -3,4 +3,7 @@
     <string name="login">Login</string>
     <string name="it_s_a_shoe">it\'s a shoe</string>
     <string name="image_of_shoes">image of shoes</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
