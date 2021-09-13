@@ -6,4 +6,10 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="welcome_title">Welcome to the ShoeStore</string>
+    <string name="welcome_text">ShoeStore, where the fines shoes meet the fastest feet.</string>
+    <string name="instructions_title">How to work with ShoeStore</string>
+    <string name="instructions_text">List all shoes in our store on the next page…</string>
+    <string name="instructions">Instructions</string>
+    <string name="shoe_list">Shoe list</string>
 </resources>

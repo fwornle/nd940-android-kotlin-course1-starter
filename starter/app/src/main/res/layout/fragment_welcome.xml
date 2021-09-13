@@ -8,23 +8,57 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/tvWelcomeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+            android:layout_gravity="center"
+            android:text="@string/welcome_title"
+            android:textSize="@dimen/title_text_size"
+            />
 
         <ImageView
             android:id="@+id/ivShoes"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/image_header_height"
-            android:layout_marginStart="@dimen/horizontal_margin"
-            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:layout_width="280dp"
+            android:layout_height="290dp"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:contentDescription="@string/image_of_shoes"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/playButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/shoes"
-            android:contentDescription="@string/image_of_shoes" />
+            app:srcCompat="@drawable/shoes" />
+
+        <TextView
+            android:id="@+id/tvWelcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+            android:layout_gravity="center"
+            android:text="@string/welcome_text"
+            android:textSize="@dimen/label_text_size"
+            />
+
+        <Button
+            android:id="@+id/btInstructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_large"
+            android:layout_gravity="center"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:text="@string/instructions"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
 

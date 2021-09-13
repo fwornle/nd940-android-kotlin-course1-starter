@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.InstructionFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/tvInstructionsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+            android:layout_gravity="center"
+            android:text="@string/instructions_title"
+            android:textSize="@dimen/title_text_size"
+            />
+
+        <TextView
+            android:id="@+id/tvInstructionsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+            android:layout_gravity="center"
+            android:text="@string/instructions_text"
+            android:textSize="@dimen/label_text_size"
+            />
+
+        <Button
+            android:id="@+id/btShoeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_large"
+            android:layout_gravity="center"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:text="@string/shoe_list"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            />
 
     </LinearLayout>
 
