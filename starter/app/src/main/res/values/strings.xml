@@ -15,4 +15,5 @@
     <string name="shoe_list">Shoe list</string>
     <string name="details">Details</string>
     <string name="app_title">ShoeStore</string>
+    <string name="shoe_size">Size: %1$s (US)</string>
 </resources>

@@ -10,31 +10,41 @@
             type="com.udacity.shoestore.ShoeListFragment" />
     </data>
 
-    <ScrollView
+    <!-- needed to align FloatingActionButton at bottom -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/vertical_margin_small"
+        android:layout_marginTop="@dimen/vertical_margin_appbar"
+        >
 
-        <LinearLayout
-            android:id="@+id/llShoeList"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabDetails"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llShoeList"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:src="@drawable/ic_add"
-                android:contentDescription="@string/details"
-                android:layout_margin="16dp"
+                android:orientation="vertical"
                 />
 
-        </LinearLayout>
+        </ScrollView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/details"
+            android:src="@drawable/ic_add"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            />
 
-
-    </ScrollView>
+    </RelativeLayout>
 
 </layout>
