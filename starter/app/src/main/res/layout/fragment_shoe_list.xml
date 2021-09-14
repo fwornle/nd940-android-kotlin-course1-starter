@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.ShoeListFragment">
 
@@ -11,11 +10,31 @@
             type="com.udacity.shoestore.ShoeListFragment" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clShoeList"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/llShoeList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_add"
+                android:contentDescription="@string/details"
+                android:layout_margin="16dp"
+                />
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
 
 </layout>

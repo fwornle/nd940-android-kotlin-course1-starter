@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import timber.log.Timber
 
 // <layout> tag in XML plus build option "databinding true" (gradle.build) needed to generate
@@ -36,6 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         // configure app bar in navController (for the menu)
         appBarConfiguration = AppBarConfiguration(navController.graph)
+
+        // set-up ActionBar / Toolbar
+        // ... crashes the app (null pointer exception - setTitle)
+        // ... removing this line keeps the app alive, but at the expense of a working toolbar
+        // NavigationUI.setupActionBarWithNavController(this, navController)
 
     }
 }
