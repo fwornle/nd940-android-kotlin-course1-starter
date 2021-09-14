@@ -1,11 +1,11 @@
 package com.udacity.shoestore
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
 
 class ShoeDetailFragment : Fragment() {
@@ -17,7 +17,22 @@ class ShoeDetailFragment : Fragment() {
             inflater, R.layout.fragment_shoe_detail, container, false)
 
 
+        // enable overlay menu
+        setHasOptionsMenu(true)
+
         // return View object
         return binding.root
+    }
+
+    // inflate menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.overflow_menu, menu)
+    }
+
+    // instruct "selecting the menu item" to navigate to the configured destination (menu item id)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 }

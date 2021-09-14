@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
 
         // needed to inflate the activity layout (thereby making the fragment available for nav)
-        @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         // solution for <androidx.fragment.app.FragmentContainerView> based code
@@ -35,13 +34,19 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // configure app bar in navController (for the menu)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        // configure app bar in navController
+        // ... unsure what this is needed for - omitting it makes no difference --> commented out
+        //appBarConfiguration = AppBarConfiguration(navController.graph)
 
         // set-up ActionBar / Toolbar
         // ... crashes the app (null pointer exception - setTitle)
         // ... removing this line keeps the app alive, but at the expense of a working toolbar
-        // NavigationUI.setupActionBarWithNavController(this, navController)
+        // ... to still get a working toolbar, add the line below (setSupportActionBar)
+        //NavigationUI.setupActionBarWithNavController(this, navController)
+
+        // configure ActionBar as defined in layout element <androidx.appcompat.widget.Toolbar>
+        setSupportActionBar(binding.toolbar)
 
     }
+
 }
