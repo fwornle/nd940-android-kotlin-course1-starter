@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
@@ -16,6 +17,15 @@ class ShoeDetailFragment : Fragment() {
         val binding: FragmentShoeDetailBinding = DataBindingUtil.inflate<FragmentShoeDetailBinding>(
             inflater, R.layout.fragment_shoe_detail, container, false)
 
+        // hook up button to navController: Cancel
+        binding.btCancel.setOnClickListener { view: View ->
+            Navigation.findNavController(view).navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
+        }
+
+        // hook up button to navController: Save
+        binding.btSave.setOnClickListener { view: View ->
+            Navigation.findNavController(view).navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
+        }
 
         // enable overlay menu
         setHasOptionsMenu(true)

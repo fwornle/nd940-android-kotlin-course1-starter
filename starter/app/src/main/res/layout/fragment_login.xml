@@ -6,140 +6,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.LoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clLogin"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:layout_marginTop="@dimen/vertical_margin_appbar"
         >
 
-        <ImageView
-            android:id="@+id/ivShoe"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/image_header_height"
-            android:layout_marginStart="@dimen/horizontal_margin_small"
-            android:layout_marginTop="@dimen/vertical_margin_image"
-            android:layout_marginEnd="@dimen/horizontal_margin_small"
-            android:contentDescription="@string/it_s_a_shoe"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/shoe"
-            />
-
-        <!-- invisible TV for alignment of label and edit text field -->
-        <TextView
-            android:id="@+id/tvAnchorEmail"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLogin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/vertical_margin_image"
-            android:layout_marginStart="@dimen/horizontal_margin_anchor_login"
-            android:text="@string/anchor_char"
-            android:textSize="50sp"
-            android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/ivShoe"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            >
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_margin_small"
-            android:layout_marginEnd="@dimen/horizontal_margin_small"
-            android:text="@string/email"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
-            app:layout_constraintEnd_toStartOf="@+id/tvAnchorEmail"
-            tools:labelFor="@id/etEmail"
-            />
+            <ImageView
+                android:id="@+id/ivShoe"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/image_header_height"
+                android:layout_marginTop="@dimen/vertical_margin_image"
+                android:layout_marginBottom="@dimen/vertical_margin_image"
+                android:layout_marginStart="@dimen/horizontal_margin_small"
+                android:layout_marginEnd="@dimen/horizontal_margin_small"
+                android:contentDescription="@string/it_s_a_shoe"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/clEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/shoe" />
 
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:autofillHints="Enter email address"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
-            app:layout_constraintStart_toEndOf="@+id/tvAnchorEmail"
-            />
 
-        <!-- invisible TV for alignment of label and edit text field -->
-        <TextView
-            android:id="@+id/tvAnchorPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/vertical_margin_small"
-            android:layout_marginStart="@dimen/horizontal_margin_anchor_login"
-            android:text="@string/anchor_char"
-            android:textSize="50sp"
-            android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/tvAnchorEmail"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            <!-- row: email -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/ivShoe"
+                app:layout_constraintBottom_toTopOf="@+id/clPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
 
-        <TextView
-            android:id="@+id/tvPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_margin_small"
-            android:layout_marginEnd="@dimen/horizontal_margin_small"
-            android:text="@string/password"
-            android:textSize="@dimen/label_text_size"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
-            app:layout_constraintEnd_toStartOf="@+id/tvAnchorPassword"
-            tools:labelFor="@id/etPassword"
-            />
+                <!-- invisible TV for alignment of label and edit text field -->
+                <TextView
+                    android:id="@+id/tvAnchorEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin_anchor_login"
+                    android:text="@string/anchor_char"
+                    android:textSize="@dimen/invisible_gap_details"
+                    android:visibility="invisible"
+                    app:layout_constraintHorizontal_weight="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="Enter password"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:imeOptions="actionDone"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
-            app:layout_constraintStart_toEndOf="@+id/tvAnchorPassword"
-            />
 
-        <Button
-            android:id="@+id/btLogin"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_margin_small"
-            android:paddingStart="@dimen/button_padding"
-            android:paddingEnd="@dimen/button_padding"
-            android:text="@string/login"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/button_text_size"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tvAnchorPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btSignup"
-            />
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin_small"
+                    android:layout_marginEnd="@dimen/horizontal_margin_small"
+                    android:text="@string/email"
+                    android:textSize="@dimen/label_text_size"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
+                    app:layout_constraintEnd_toStartOf="@+id/tvAnchorEmail"
+                    app:layout_constraintHorizontal_weight="0.2"
+                    tools:labelFor="@id/etEmail" />
 
-        <Button
-            android:id="@+id/btSignup"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_margin_small"
-            android:paddingStart="@dimen/button_padding"
-            android:paddingEnd="@dimen/button_padding"
-            android:text="@string/sign_up"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/button_text_size"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tvAnchorPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin_small"
+                    android:layout_marginEnd="@dimen/horizontal_margin_huge"
+                    android:autofillHints="Enter email address"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
+                    app:layout_constraintStart_toEndOf="@+id/tvAnchorEmail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="0.7"
+                    />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- row: password -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/btLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clEmail">
+
+                <!-- invisible TV for alignment of label and edit text field -->
+                <TextView
+                    android:id="@+id/tvAnchorPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin_anchor_login"
+                    android:text="@string/anchor_char"
+                    android:textSize="@dimen/invisible_gap_details"
+                    android:visibility="invisible"
+                    app:layout_constraintHorizontal_weight="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tvPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin_small"
+                    android:layout_marginEnd="@dimen/horizontal_margin_small"
+                    android:text="@string/password"
+                    android:textSize="@dimen/label_text_size"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
+                    app:layout_constraintEnd_toStartOf="@+id/tvAnchorPassword"
+                    app:layout_constraintHorizontal_weight="0.2"
+                    tools:labelFor="@id/etPassword" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin_small"
+                    android:layout_marginEnd="@dimen/horizontal_margin_huge"
+                    android:autofillHints="Enter passwords"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="0.7"
+                    app:layout_constraintStart_toEndOf="@+id/tvAnchorPassword" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/btLogin"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_margin_large"
+                android:layout_marginBottom="@dimen/vertical_margin_large"
+                android:layout_marginStart="@dimen/horizontal_margin_small"
+                android:paddingStart="@dimen/button_padding"
+                android:paddingEnd="@dimen/button_padding"
+                android:text="@string/login"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/button_text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/clPassword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btSignup"
+                />
+
+            <Button
+                android:id="@+id/btSignup"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_margin_large"
+                android:layout_marginBottom="@dimen/vertical_margin_large"
+                android:layout_marginStart="@dimen/horizontal_margin_small"
+                android:paddingStart="@dimen/button_padding"
+                android:paddingEnd="@dimen/button_padding"
+                android:text="@string/sign_up"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/button_text_size"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/clPassword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </layout>

@@ -10,18 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:layout_marginTop="@dimen/vertical_margin_appbar"
         >
 
-
+        <!-- title -->
         <TextView
             android:id="@+id/tvWelcomeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
             android:layout_marginHorizontal="@dimen/horizontal_margin_large"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:text="@string/welcome_title"
             android:textSize="@dimen/title_text_size"
             />
@@ -30,7 +30,7 @@
             android:id="@+id/ivShoes"
             android:layout_width="280dp"
             android:layout_height="290dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="@dimen/horizontal_margin_large"
             android:layout_marginTop="@dimen/vertical_margin_small"
             android:contentDescription="@string/image_of_shoes"
@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
             android:layout_marginHorizontal="@dimen/horizontal_margin_large"
-            android:layout_gravity="center"
             android:text="@string/welcome_text"
             android:textSize="@dimen/label_text_size"
             />
@@ -53,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_large"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
             android:text="@string/instructions"

@@ -8,28 +8,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:layout_marginTop="@dimen/vertical_margin_appbar"
         >
 
+        <!-- title -->
         <TextView
             android:id="@+id/tvInstructionsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
             android:layout_marginHorizontal="@dimen/horizontal_margin_large"
-            android:layout_gravity="center"
             android:text="@string/instructions_title"
             android:textSize="@dimen/title_text_size"
             />
 
+        <!-- instructions -->
         <TextView
             android:id="@+id/tvInstructionsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
             android:layout_marginHorizontal="@dimen/horizontal_margin_large"
-            android:layout_gravity="center"
             android:text="@string/instructions_text"
             android:textSize="@dimen/label_text_size"
             />
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_large"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
             android:text="@string/shoe_list"

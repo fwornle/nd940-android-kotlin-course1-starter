@@ -24,6 +24,7 @@
             android:layout_height="match_parent"
             android:fillViewport="true">
 
+            <!-- container for programmatically added views -->
             <LinearLayout
                 android:id="@+id/llShoeList"
                 android:layout_width="match_parent"
