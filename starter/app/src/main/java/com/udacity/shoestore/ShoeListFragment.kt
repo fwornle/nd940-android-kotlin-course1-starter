@@ -51,21 +51,19 @@ class ShoeListFragment : Fragment() {
             .get(ShoesViewModel::class.java)
         Timber.i("Reference to viewModel obtained.")
 
-        // fetch shoe list (from LiveData)
-        val shoeList = viewModel.storeInventory.value
+        // bind the ShoesViewModel to the fragment (to make LiveData accessible directly in the UI)
+        binding.shoesViewModel = viewModel
+        binding.setLifecycleOwner(this)
 
         // fetch package name - needed to assemble Resource IDs
         // http://daniel-codes.blogspot.com/2009/12/dynamically-retrieving-resources-in.html
         packageName = getActivity()?.getPackageName() ?: "com.udacity.shoestore"
 
-        // display all shoes in da store
-        createInventoryView(shoeList)
+        // install observer to generate shoe list view (everytime the assoc. LiveData changes)
+        viewModel.storeInventory.observe(this.viewLifecycleOwner, { newShoeList ->
 
-        // install observer to get shoe list
-        viewModel.storeInventory.observe(this.viewLifecycleOwner, { newInventory ->
-
-            // configure shoe entry template
-            // ... the above code should go here - if we need this to update automatically...
+            // re-create view based on new shoe list data
+            createInventoryView(newShoeList)
 
         })
 

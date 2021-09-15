@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="shoeList"
-            type="com.udacity.shoestore.ShoeListFragment" />
+            name="shoesViewModel"
+            type="com.udacity.shoestore.models.ShoesViewModel" />
     </data>
 
     <!-- needed to align FloatingActionButton at bottom -->

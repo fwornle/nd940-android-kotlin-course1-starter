@@ -11,12 +11,24 @@ class ShoesViewModel: ViewModel() {
     private var _storeInventory = MutableLiveData<ArrayList<Shoe>>()
     var storeInventory: LiveData<ArrayList<Shoe>> = _storeInventory
 
-    // initialize class
+    // new shoe
+    var newShoeMask = MutableLiveData<Shoe>()
+
+    // initialize ShoeViewModel class
     init {
         Timber.i("ViewModel created.")
 
         // initialize store inventory (LiveData)
         _storeInventory.value = initShoeList()
+
+        // initialize shoe mask with empty Shoe
+        newShoeMask.value = Shoe(
+            name = "",
+            company = "",
+            description = "",
+            size = -1.0,
+        )
+
     }
 
     override fun onCleared() {
