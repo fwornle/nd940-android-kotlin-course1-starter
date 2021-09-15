@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.ShoeDetailFragment">
 
@@ -13,7 +14,208 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clShoeDetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/vertical_margin_appbar"
+        >
+
+        <TextView
+            android:id="@+id/tvEnterData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_large"
+            android:gravity="center_horizontal"
+            android:text="@string/enter_new_shoe_data"
+            android:textStyle="bold"
+            android:textSize="@dimen/title_text_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <!-- invisible TV for alignment of label and edit text field -->
+        <TextView
+            android:id="@+id/tvAnchorShoeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor_details"
+            android:text="@string/anchor_char"
+            android:textSize="@dimen/invisible_gap_details"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tvEnterData"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvShoeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
+            android:layout_marginEnd="@dimen/horizontal_margin_small"
+            android:text="@string/shoe_name"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeName"
+            app:layout_constraintEnd_toStartOf="@+id/tvAnchorShoeName"
+            tools:labelFor="@id/etShoeName"
+            />
+
+        <EditText
+            android:id="@+id/etShoeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:autofillHints="Shoe name"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeName"
+            app:layout_constraintStart_toEndOf="@+id/tvAnchorShoeName"
+            />
+
+        <!-- invisible TV for alignment of label and edit text field -->
+        <TextView
+            android:id="@+id/tvAnchorShoeManuf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor_details"
+            android:text="@string/anchor_char"
+            android:textSize="@dimen/invisible_gap_details"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tvAnchorShoeName"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvShoeManuf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
+            android:layout_marginEnd="@dimen/horizontal_margin_small"
+            android:text="@string/shoe_manufacturer"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeManuf"
+            app:layout_constraintEnd_toStartOf="@+id/tvAnchorShoeManuf"
+            tools:labelFor="@id/etShoeManuf"
+            />
+
+        <EditText
+            android:id="@+id/etShoeManuf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:autofillHints="Manufacturer"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeManuf"
+            app:layout_constraintStart_toEndOf="@+id/tvAnchorShoeManuf"
+            />
+
+        <!-- invisible TV for alignment of label and edit text field -->
+        <TextView
+            android:id="@+id/tvAnchorShoeDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor_details"
+            android:text="@string/anchor_char"
+            android:textSize="@dimen/invisible_gap_details"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tvAnchorShoeManuf"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvShoeDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
+            android:layout_marginEnd="@dimen/horizontal_margin_small"
+            android:text="@string/description_of_shoe"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeDesc"
+            app:layout_constraintEnd_toStartOf="@+id/tvAnchorShoeDesc"
+            tools:labelFor="@id/etShoeDesc"
+            />
+
+        <EditText
+            android:id="@+id/etShoeDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:autofillHints="Shoe description"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeDesc"
+            app:layout_constraintStart_toEndOf="@+id/tvAnchorShoeDesc"
+            />
+
+        <!-- invisible TV for alignment of label and edit text field -->
+        <TextView
+            android:id="@+id/tvAnchorShoeSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin_small"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor_details"
+            android:text="@string/anchor_char"
+            android:textSize="@dimen/invisible_gap_details"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/tvAnchorShoeDesc"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvShoeSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
+            android:layout_marginEnd="@dimen/horizontal_margin_small"
+            android:text="@string/shoe_size_us"
+            android:textSize="@dimen/label_text_size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeSize"
+            app:layout_constraintEnd_toStartOf="@+id/tvAnchorShoeSize"
+            tools:labelFor="@id/etShoeSize"
+            />
+
+        <EditText
+            android:id="@+id/etShoeSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:autofillHints="Shoe size"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeSize"
+            app:layout_constraintStart_toEndOf="@+id/tvAnchorShoeSize"
+            />
+
+        <Button
+            android:id="@+id/btSave"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:text="@string/save"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnchorShoeSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btCancel"
+            />
+
+        <Button
+            android:id="@+id/btCancel"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_small"
+            android:paddingStart="@dimen/button_padding"
+            android:paddingEnd="@dimen/button_padding"
+            android:text="@string/cancel"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnchorShoeSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btSave"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -16,4 +16,15 @@
     <string name="details">Details</string>
     <string name="app_title">ShoeStore</string>
     <string name="shoe_size">Size: %1$s (US)</string>
+    <string name="shoe_name">Model</string>
+    <string name="shoe_manufacturer">Manufacturer</string>
+    <string name="enter_new_shoe_data">Enter new shoe data:</string>
+    <string name="description_of_shoe">Description</string>
+    <string name="shoe_size_us">Size (US)</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="anchor_char">x</string>
+    <string name="model">Model</string>
+    <string name="description">Description</string>
+    <string name="size">Size</string>
 </resources>

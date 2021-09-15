@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clLogin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/vertical_margin_appbar"
+        >
 
         <ImageView
             android:id="@+id/ivShoe"
@@ -33,12 +35,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_image"
-            android:layout_marginStart="@dimen/horizontal_margin_anchor"
-            android:text="x"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor_login"
+            android:text="@string/anchor_char"
             android:textSize="50sp"
             android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/ivShoe"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -50,6 +53,7 @@
             android:textSize="@dimen/label_text_size"
             app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
             app:layout_constraintEnd_toStartOf="@+id/tvAnchorEmail"
+            tools:labelFor="@id/etEmail"
             />
 
         <EditText
@@ -61,7 +65,6 @@
             android:autofillHints="Enter email address"
             app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorEmail"
             app:layout_constraintStart_toEndOf="@+id/tvAnchorEmail"
-            tools:labelFor="@id/etEmail"
             />
 
         <!-- invisible TV for alignment of label and edit text field -->
@@ -70,12 +73,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_margin_small"
-            android:layout_marginStart="@dimen/horizontal_margin_anchor"
-            android:text="x"
+            android:layout_marginStart="@dimen/horizontal_margin_anchor_login"
+            android:text="@string/anchor_char"
             android:textSize="50sp"
             android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/tvAnchorEmail"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <TextView
             android:id="@+id/tvPassword"
@@ -87,6 +91,7 @@
             android:textSize="@dimen/label_text_size"
             app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
             app:layout_constraintEnd_toStartOf="@+id/tvAnchorPassword"
+            tools:labelFor="@id/etPassword"
             />
 
         <EditText
@@ -99,11 +104,11 @@
             android:imeOptions="actionDone"
             app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorPassword"
             app:layout_constraintStart_toEndOf="@+id/tvAnchorPassword"
-            tools:labelFor="@id/etPassword" />
+            />
 
         <Button
             android:id="@+id/btLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin_small"
             android:paddingStart="@dimen/button_padding"
@@ -120,7 +125,7 @@
 
         <Button
             android:id="@+id/btSignup"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin_small"
             android:paddingStart="@dimen/button_padding"
@@ -136,4 +141,5 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
