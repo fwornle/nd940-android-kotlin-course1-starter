@@ -25,28 +25,32 @@ class MainActivity : AppCompatActivity() {
         // needed to inflate the activity layout (thereby making the fragment available for nav)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
+        // set Toolbar (layout element <androidx.appcompat.widget.Toolbar>) as AppBar
+        // (... thereby replacing the "native system ActionBar" - see:
+        //      https://developer.android.com/training/appbar/setting-up )
+        // --> gives the app a basic ActionBar (destination label & overflow menu)
+        setSupportActionBar(binding.toolbar)
+
         // solution for <androidx.fragment.app.FragmentContainerView> based code
         // (this also works for <fragment> based code):
         // [inspired from:]
         // https://stackoverflow.com/questions/53902494/navigation-component-cannot-find-navcontroller
-        // ... which refers to
-        // https://stackoverflow.com/questions/50502269/illegalstateexception-link-does-not-have-a-navcontroller-set
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         // configure app bar in navController
-        // ... unsure what this is needed for - omitting it makes no difference --> commented out
-        //appBarConfiguration = AppBarConfiguration(navController.graph)
+        // ... adds navigation 'up' icon
+        //     (only functional in conj. w/h the corresponding callback: onSupportNavigateUp)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
-        // set-up ActionBar / Toolbar
-        // ... crashes the app (null pointer exception - setTitle)
-        // ... removing this line keeps the app alive, but at the expense of a working toolbar
-        // ... to still get a working toolbar, add the line below (setSupportActionBar)
-        //NavigationUI.setupActionBarWithNavController(this, navController)
+    }
 
-        // configure ActionBar as defined in layout element <androidx.appcompat.widget.Toolbar>
-        setSupportActionBar(binding.toolbar)
-
+    // callback function to navigate up
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
 }
