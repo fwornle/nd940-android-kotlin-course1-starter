@@ -4,50 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.InstructionFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
+        android:fillViewport="true"
         android:layout_marginTop="@dimen/vertical_margin_appbar"
         >
 
-        <!-- title -->
-        <TextView
-            android:id="@+id/tvInstructionsTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/vertical_margin_small"
-            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
-            android:text="@string/instructions_title"
-            android:textSize="@dimen/title_text_size"
-            />
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            >
 
-        <!-- instructions -->
-        <TextView
-            android:id="@+id/tvInstructionsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/vertical_margin_small"
-            android:layout_marginHorizontal="@dimen/horizontal_margin_large"
-            android:text="@string/instructions_text"
-            android:textSize="@dimen/label_text_size"
-            />
+            <!-- title -->
+            <TextView
+                android:id="@+id/tvInstructionsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_margin_small"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+                android:text="@string/instructions_title"
+                android:textSize="@dimen/title_text_size"
+                />
 
-        <Button
-            android:id="@+id/btShoeList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/vertical_margin_large"
-            android:layout_gravity="center_horizontal"
-            android:paddingStart="@dimen/button_padding"
-            android:paddingEnd="@dimen/button_padding"
-            android:text="@string/shoe_list"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/button_text_size"
-            android:textStyle="bold"
-            />
+            <!-- instructions -->
+            <TextView
+                android:id="@+id/tvInstructionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_margin_small"
+                android:layout_marginBottom="@dimen/vertical_margin_large"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_large"
+                android:text="@string/instructions_text"
+                android:textSize="@dimen/label_text_size"
+                />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btShoeList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_margin_large"
+                android:layout_marginBottom="@dimen/vertical_margin_large"
+                android:layout_gravity="center_horizontal"
+                android:paddingStart="@dimen/button_padding"
+                android:paddingEnd="@dimen/button_padding"
+                android:text="@string/shoe_list"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/button_text_size"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </layout>

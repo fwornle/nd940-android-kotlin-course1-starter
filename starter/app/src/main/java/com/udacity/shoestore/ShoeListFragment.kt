@@ -19,6 +19,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
+import com.udacity.shoestore.models.Shoe
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -30,12 +31,14 @@ import java.net.URL
 class ShoeListFragment : Fragment() {
 
     private lateinit var viewModel: ShoesViewModel
+    private lateinit var binding: FragmentShoeListBinding
+    private lateinit var packageName: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
         // Inflate the layout for login fragment
-        val binding: FragmentShoeListBinding = DataBindingUtil.inflate<FragmentShoeListBinding>(
+        binding = DataBindingUtil.inflate<FragmentShoeListBinding>(
             inflater, R.layout.fragment_shoe_list, container, false)
 
         // configure FloatingActionButton
@@ -53,9 +56,30 @@ class ShoeListFragment : Fragment() {
 
         // fetch package name - needed to assemble Resource IDs
         // http://daniel-codes.blogspot.com/2009/12/dynamically-retrieving-resources-in.html
-        val packageName = getActivity()?.getPackageName() ?: "com.udacity.shoestore"
+        packageName = getActivity()?.getPackageName() ?: "com.udacity.shoestore"
 
-        // display all shoes in da store - provided there are any (null check)
+        // display all shoes in da store
+        createInventoryView(shoeList)
+
+        // install observer to get shoe list
+        viewModel.storeInventory.observe(this.viewLifecycleOwner, { newInventory ->
+
+            // configure shoe entry template
+            // ... the above code should go here - if we need this to update automatically...
+
+        })
+
+        // enable overlay menu
+        setHasOptionsMenu(true)
+
+        // return View object
+        return binding.root
+    }
+
+    // programmatically add inventory as child views to the designated parent view (ID: llShoeList)
+    private fun createInventoryView(shoeList: ArrayList<Shoe>?) {
+
+        // null safety - LifeData can be 'null'
         shoeList?.let {
 
             for (shoe in it) {
@@ -63,17 +87,21 @@ class ShoeListFragment : Fragment() {
                 // inflate shoe_entry layout (used as "row template")
                 // ... inspired by:
                 // https://www.geeksforgeeks.org/how-to-add-views-dynamically-and-store-data-in-arraylist-in-android/
-                val llShoeEntry: LinearLayout = View.inflate(context, R.layout.shoe_entry, null) as LinearLayout
+                val llShoeEntry: LinearLayout =
+                    View.inflate(context, R.layout.shoe_entry, null) as LinearLayout
 
                 // display first image (if any)
                 val imgRes = resources.getIdentifier(shoe.images.first(), "drawable", packageName)
 
                 // complete all template entries with data from currently selected shoe
                 for (view in llShoeEntry.children) {
-                    when(view.tag) {
+                    when (view.tag) {
                         "shoeImage" -> (view as ImageView).setImageResource(imgRes)
                         "shoeName" -> (view as TextView).text = shoe.name
-                        "shoeSize" -> (view as TextView).text = String.format(resources.getString(R.string.shoe_size), shoe.size.toString())
+                        "shoeSize" -> (view as TextView).text = String.format(
+                            resources.getString(R.string.shoe_size),
+                            shoe.size.toString()
+                        )
                         "shoeDesc" -> (view as TextView).text = shoe.description
                     }
                 }
@@ -89,19 +117,6 @@ class ShoeListFragment : Fragment() {
 
         } // null safety
 
-        // install observer to get shoe list
-        viewModel.storeInventory.observe(this.viewLifecycleOwner, { newInventory ->
-
-            // configure shoe entry template
-            // ... the above code should go here - if we need this to update automatically...
-
-        })
-
-        // enable overlay menu
-        setHasOptionsMenu(true)
-
-        // return View object
-        return binding.root
     }
 
     // inflate menu
