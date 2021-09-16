@@ -24,7 +24,9 @@ class ShoeDetailFragment : Fragment() {
             inflater, R.layout.fragment_shoe_detail, container, false)
 
         // get reference to view model
-        viewModel =  ViewModelProvider(this)
+        // ... bind lifecycle scope to activity (to allow sharing of ViewModel across all fragments)
+        // ... see: answer to question https://knowledge.udacity.com/questions/691693
+        viewModel =  ViewModelProvider(requireActivity())
             .get(ShoesViewModel::class.java)
         Timber.i("Reference to viewModel obtained.")
 

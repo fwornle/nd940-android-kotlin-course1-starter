@@ -2,10 +2,12 @@ package com.udacity.shoestore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import timber.log.Timber
 
 // <layout> tag in XML plus build option "databinding true" (gradle.build) needed to generate
@@ -39,18 +41,14 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         // configure app bar in navController
-        // ... adds navigation 'up' icon
-        //     (only functional in conj. w/h the corresponding callback: onSupportNavigateUp)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        // ... adds navigation 'up' icon on all pages which are not "top level"
+        // docs: https://developer.android.com/guide/navigation/navigation-ui#appbarconfiguration
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.loginFragment, R.id.shoeListFragment))
 
-    }
+        // use AppBar config with (custom) toolbar
+        // this set-up does not require overriding of callback "onSupportNavigateUp"
+        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
-    // callback function to navigate up
-    override fun onSupportNavigateUp(): Boolean {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
 }

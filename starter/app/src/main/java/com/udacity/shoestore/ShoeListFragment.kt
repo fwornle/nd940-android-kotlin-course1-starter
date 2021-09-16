@@ -40,7 +40,9 @@ class ShoeListFragment : Fragment() {
         }
 
         // get reference to view model
-        viewModel =  ViewModelProvider(this)
+        // ... bind lifecycle scope to activity (to allow sharing of ViewModel across all fragments)
+        // ... see: answer to question https://knowledge.udacity.com/questions/691693
+        viewModel =  ViewModelProvider(requireActivity())
             .get(ShoesViewModel::class.java)
         Timber.i("Reference to viewModel obtained.")
 
@@ -79,18 +81,23 @@ class ShoeListFragment : Fragment() {
                     View.inflate(context, R.layout.shoe_entry, null) as LinearLayout
 
                 // display first image (if any)
-                val imgRes = resources.getIdentifier(shoe.images.first(), "drawable", packageName)
+                var imgRes: Int?
+                if (!shoe.images.isEmpty()) {
+                    // image resource ID stored in list --> fetch first element
+                    imgRes = resources.getIdentifier(shoe.images.first(), "drawable", packageName)
+                } else {
+                    // no image
+                    imgRes = null
+                }
 
                 // complete all template entries with data from currently selected shoe
                 for (view in llShoeEntry.children) {
                     when (view.tag) {
-                        "shoeImage" -> (view as ImageView).setImageResource(imgRes)
+                        "shoeImage" -> imgRes?.let { (view as ImageView).setImageResource(it) }
                         "shoeName" -> (view as TextView).text = shoe.name
-                        "shoeSize" -> (view as TextView).text = String.format(
-                            resources.getString(R.string.shoe_size),
-                            shoe.size.toString()
-                        )
                         "shoeDesc" -> (view as TextView).text = shoe.description
+                        "shoeSize" -> (view as TextView).text =
+                            String.format(resources.getString(R.string.shoe_size), shoe.size.toString())
                     }
                 }
 
