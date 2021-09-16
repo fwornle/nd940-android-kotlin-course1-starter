@@ -2,7 +2,6 @@ package com.udacity.shoestore.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
 
@@ -25,13 +24,8 @@ class ShoesViewModel: ViewModel() {
         // initialize store inventory (LiveData)
         _storeInventory.value = initShoeList()
 
-        // initialize shoe mask with empty Shoe
-        newShoe.value = Shoe(
-            name = "test",
-            company = "bmw",
-            description = "a new shoe",
-            size = -1.0,  // invalid
-        )
+        // initialize shoe mask: empty Shoe / Shoe with default data (development)
+        newShoe.value = initShoe()
 
         // initialized intermediate LiveData for String-to-Double transformatin (and input checking)
         newShoeSizeString.value = ""
@@ -84,7 +78,7 @@ class ShoesViewModel: ViewModel() {
             Shoe(
                 name = "Avato Sneaker",
                 size = 43.0,
-                company = "Salamander",
+                company = "Coors",
                 description = "White, indoors, men, leather",
                 images = mutableListOf(
                     "shoe4",
@@ -95,7 +89,7 @@ class ShoesViewModel: ViewModel() {
             Shoe(
                 name = "Sneaker 'Air'",
                 size = 43.0,
-                company = "Salamander",
+                company = "Coors",
                 description = "Blue, indoors, men, textile",
                 images = mutableListOf(
                     "shoe5",
@@ -183,12 +177,26 @@ class ShoesViewModel: ViewModel() {
         } ?: -2.0  // "-2.0" (a mere error indicator for debugging)
 
 
-        // add newShoe to the list of shoes
-        _storeInventory.value?.add(newShoe.value!!)
+        // add newShoe to the beginning of the list of shoes
+        _storeInventory.value?.add(0, newShoe.value!!)
 
         // perform some logging to keep track of data flow in log messages
         Timber.i("Store updated: ${_storeInventory.value?.size} entries, ${_storeInventory.value}")
 
+    }
+
+    // return an "empty" shoe
+    fun initShoe(): Shoe {
+        return Shoe(
+//            name = "Test shoe",
+//            company = "Runner's High",
+//            description = "It's a brand new shoe",
+//            size = -1.0,  // invalid
+            name = "",
+            company = "",
+            description = "",
+            size = -1.0,  // invalid
+        )
     }
 
 }

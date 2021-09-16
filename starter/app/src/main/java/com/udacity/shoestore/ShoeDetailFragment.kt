@@ -37,17 +37,26 @@ class ShoeDetailFragment : Fragment() {
         // fragment (also) listens to LiveData in ViewModel
         binding.setLifecycleOwner(this)
 
-        // hook up button to navController: Cancel
+        // hook up button to navController: CANCEL
         binding.btCancel.setOnClickListener { view: View ->
+
+            // clear layout (via LiveData)
+            viewModel.newShoe.value = viewModel.initShoe()
+            viewModel.newShoeSizeString.value = ""
+
             // navigate back to shoe list destination
             Navigation.findNavController(view).navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
         }
 
-        // hook up button to navController: Save
+        // hook up button to navController: SAVE
         binding.btSave.setOnClickListener { view: View ->
 
             // add newly created shoe to inventory
             viewModel.addShoeToInventory()
+
+            // clear layout (via LiveData)
+            viewModel.newShoe.value = viewModel.initShoe()
+            viewModel.newShoeSizeString.value = ""
 
             // navigate back to shoe list destination
             Navigation.findNavController(view).navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)

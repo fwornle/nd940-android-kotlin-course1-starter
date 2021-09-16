@@ -95,6 +95,7 @@ class ShoeListFragment : Fragment() {
                     when (view.tag) {
                         "shoeImage" -> imgRes?.let { (view as ImageView).setImageResource(it) }
                         "shoeName" -> (view as TextView).text = shoe.name
+                        "shoeManuf" -> (view as TextView).text = shoe.company
                         "shoeDesc" -> (view as TextView).text = shoe.description
                         "shoeSize" -> (view as TextView).text =
                             String.format(resources.getString(R.string.shoe_size), shoe.size.toString())
