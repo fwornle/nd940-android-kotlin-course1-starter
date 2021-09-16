@@ -7,7 +7,7 @@
 
     <data>
         <variable
-            name="shoeDetail"
+            name="shoesViewModel"
             type="com.udacity.shoestore.models.ShoesViewModel" />
     </data>
 
@@ -86,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/horizontal_margin_huge"
                     android:autofillHints="Shoe name"
+                    android:text="@={shoesViewModel.newShoe.name}"
                     android:ems="10"
                     android:inputType="text"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeName"
@@ -142,6 +143,7 @@
                     android:autofillHints="Manufacturer"
                     android:ems="10"
                     android:inputType="text"
+                    android:text="@={shoesViewModel.newShoe.company}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeManuf"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="0.7"
@@ -196,6 +198,7 @@
                     android:autofillHints="Shoe description"
                     android:ems="10"
                     android:inputType="text"
+                    android:text="@={shoesViewModel.newShoe.description}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeDesc"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="0.7"
@@ -250,6 +253,7 @@
                     android:autofillHints="Shoe size"
                     android:ems="10"
                     android:inputType="numberDecimal"
+                    android:text="@={shoesViewModel.newShoeSizeString}"
                     app:layout_constraintBaseline_toBaselineOf="@id/tvAnchorShoeSize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="0.7"

@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.ShoeListFragment">
 
-    <data>
-        <variable
-            name="shoesViewModel"
-            type="com.udacity.shoestore.models.ShoesViewModel" />
-    </data>
-
     <!-- needed to align FloatingActionButton at bottom -->
     <RelativeLayout
         android:layout_width="match_parent"

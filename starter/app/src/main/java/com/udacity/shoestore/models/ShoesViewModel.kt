@@ -2,17 +2,21 @@ package com.udacity.shoestore.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
 
 class ShoesViewModel: ViewModel() {
 
-    // define store inventory as LiveData - encapsulate in ViewModel w/h getter
+    // define store inventory as LiveData - private to ShoesViewModel w/h getter for r/o access
     private var _storeInventory = MutableLiveData<ArrayList<Shoe>>()
     var storeInventory: LiveData<ArrayList<Shoe>> = _storeInventory
 
-    // new shoe
-    var newShoeMask = MutableLiveData<Shoe>()
+    // intermediate LifeData object for shoe data entry
+    var newShoe = MutableLiveData<Shoe>()
+
+    // intermediate LifeData object for (validated) entry of shoe size data
+    var newShoeSizeString = MutableLiveData<String>()
 
     // initialize ShoeViewModel class
     init {
@@ -22,12 +26,15 @@ class ShoesViewModel: ViewModel() {
         _storeInventory.value = initShoeList()
 
         // initialize shoe mask with empty Shoe
-        newShoeMask.value = Shoe(
-            name = "",
-            company = "",
-            description = "",
-            size = -1.0,
+        newShoe.value = Shoe(
+            name = "test",
+            company = "bmw",
+            description = "a new shoe",
+            size = -1.0,  // invalid
         )
+
+        // initialized intermediate LiveData for String-to-Double transformatin (and input checking)
+        newShoeSizeString.value = ""
 
     }
 
@@ -163,4 +170,25 @@ class ShoesViewModel: ViewModel() {
             ),
         )
     }
+
+    // append a new shoe entry to the list of shoes in the store
+    fun addShoeToInventory() {
+
+        // set new shoe size, turning user input to valid shoe size (or "-2.0" as error indicator)
+        newShoe.value?.size = newShoeSizeString.value?.let {
+
+            // only allow for full and half sizes
+            Math.round(it.toDouble() * 2.0) / 2.0
+
+        } ?: -2.0  // "-2.0" (a mere error indicator for debugging)
+
+
+        // add newShoe to the list of shoes
+        _storeInventory.value?.add(newShoe.value!!)
+
+        // perform some logging to keep track of data flow in log messages
+        Timber.i("Store updated: ${_storeInventory.value?.size} entries, ${_storeInventory.value}")
+
+    }
+
 }

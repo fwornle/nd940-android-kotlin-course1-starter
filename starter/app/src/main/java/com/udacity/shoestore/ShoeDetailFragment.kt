@@ -4,12 +4,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
+import com.udacity.shoestore.models.ShoesViewModel
+import timber.log.Timber
 
 class ShoeDetailFragment : Fragment() {
+
+    private lateinit var viewModel: ShoesViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
@@ -17,13 +23,31 @@ class ShoeDetailFragment : Fragment() {
         val binding: FragmentShoeDetailBinding = DataBindingUtil.inflate<FragmentShoeDetailBinding>(
             inflater, R.layout.fragment_shoe_detail, container, false)
 
+        // get reference to view model
+        viewModel =  ViewModelProvider(this)
+            .get(ShoesViewModel::class.java)
+        Timber.i("Reference to viewModel obtained.")
+
+        // give fragment access to LiveData in ViewModel
+        // ... enabling "direct" two-way binding "fragment <--> ViewModel" (no need for observers)
+        binding.shoesViewModel = viewModel
+
+        // fragment (also) listens to LiveData in ViewModel
+        binding.setLifecycleOwner(this)
+
         // hook up button to navController: Cancel
         binding.btCancel.setOnClickListener { view: View ->
+            // navigate back to shoe list destination
             Navigation.findNavController(view).navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
         }
 
         // hook up button to navController: Save
         binding.btSave.setOnClickListener { view: View ->
+
+            // add newly created shoe to inventory
+            viewModel.addShoeToInventory()
+
+            // navigate back to shoe list destination
             Navigation.findNavController(view).navigate(R.id.action_shoeDetailFragment_to_shoeListFragment)
         }
 

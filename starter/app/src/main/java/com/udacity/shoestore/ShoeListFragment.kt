@@ -1,9 +1,6 @@
 package com.udacity.shoestore
 
-import android.content.res.Resources
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
@@ -18,15 +15,7 @@ import timber.log.Timber
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.children
-import androidx.lifecycle.lifecycleScope
 import com.udacity.shoestore.models.Shoe
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import org.w3c.dom.Text
-import java.net.URL
-
 
 class ShoeListFragment : Fragment() {
 
@@ -36,6 +25,10 @@ class ShoeListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+
+        // fetch package name - needed to assemble Resource IDs
+        // http://daniel-codes.blogspot.com/2009/12/dynamically-retrieving-resources-in.html
+        packageName = getActivity()?.getPackageName() ?: "com.udacity.shoestore"
 
         // Inflate the layout for login fragment
         binding = DataBindingUtil.inflate<FragmentShoeListBinding>(
@@ -51,19 +44,14 @@ class ShoeListFragment : Fragment() {
             .get(ShoesViewModel::class.java)
         Timber.i("Reference to viewModel obtained.")
 
-        // bind the ShoesViewModel to the fragment (to make LiveData accessible directly in the UI)
-        binding.shoesViewModel = viewModel
+        // fragment (also) listens to LiveData in ViewModel --> is this needed here?
         binding.setLifecycleOwner(this)
-
-        // fetch package name - needed to assemble Resource IDs
-        // http://daniel-codes.blogspot.com/2009/12/dynamically-retrieving-resources-in.html
-        packageName = getActivity()?.getPackageName() ?: "com.udacity.shoestore"
 
         // install observer to generate shoe list view (everytime the assoc. LiveData changes)
         viewModel.storeInventory.observe(this.viewLifecycleOwner, { newShoeList ->
 
             // re-create view based on new shoe list data
-            createInventoryView(newShoeList)
+            updateInventoryView(binding.llShoeList, newShoeList)
 
         })
 
@@ -75,10 +63,12 @@ class ShoeListFragment : Fragment() {
     }
 
     // programmatically add inventory as child views to the designated parent view (ID: llShoeList)
-    private fun createInventoryView(shoeList: ArrayList<Shoe>?) {
+    private fun updateInventoryView(listNodeView: LinearLayout, shoeList: ArrayList<Shoe>?) {
 
         // null safety - LifeData can be 'null'
         shoeList?.let {
+
+            Timber.i("Adding shoe list to fragment...")
 
             for (shoe in it) {
 
@@ -106,12 +96,12 @@ class ShoeListFragment : Fragment() {
 
                 // add completed row layout of current shoe to view
                 // ... second parameter seems unnecessary - tbc. (fw-210914)
-                binding.llShoeList.addView(llShoeEntry, binding.llShoeList.childCount)
-
-                // log-it
-                Timber.i("Shoe added to fragment view: ${shoe.name}")
+                listNodeView.addView(llShoeEntry, listNodeView.childCount)
+                Timber.i("Shoe entry added to fragment view: ${shoe.name}")
 
             } // all shoes in shoeList
+
+            Timber.i("Shoe list added to fragment.")
 
         } // null safety
 
